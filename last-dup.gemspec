@@ -23,6 +23,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.5"
   spec.add_development_dependency "rake"
   spec.add_dependency "lastfm", "~> 1.23.0"
-  spec.add_dependency "mp3info", "~> 0.6.18"
+  spec.add_dependency "id3tag", "~> 0.7.0"
   spec.add_dependency "configliere", "~> 0.4.18"
 end

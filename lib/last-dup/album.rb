@@ -1,4 +1,4 @@
-require 'mp3info'
+require 'id3tag'
 
 module LastDup
 
@@ -12,15 +12,14 @@ module LastDup
       grab_metadata!
     end
 
-
     def grab_metadata!()
       @metadata = {}
-      Mp3Info.open(@album_proxy_file) do |proxy_file|
-        break unless proxy_file.hastag?
-        artist = proxy_file.tag.artist
-        @metadata[:artist] = artist unless artist.nil?
-        album_title = proxy_file.tag.album
-        @metadata[:album_title] = album_title unless album_title.nil?
+      File.open(@album_proxy_file) do |file|
+        id3_tag = ID3Tag::read file
+        artist = id3_tag.artist
+        @metadata[:artist] = artist unless artist.empty?
+        album_title = id3_tag.album
+        @metadata[:album_title] = album_title unless album_title.empty?
       end
       @metadata
     end
